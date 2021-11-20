@@ -26,6 +26,19 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                
+                {{-- @auth
+                    <a class="navbar-brand" href="{{ route('home') }}">Home</a>
+                    <a class="navbar-brand" href="#">DataPembelian</a>
+                    <a class="navbar-brand" href="{{ route('admin.product.index') }}">DataProduk</a>
+                    <a class="navbar-brand" href="{{ route('admin.model.index') }}">DataModel</a>
+                    
+                    @if (auth()->user()->role == 'admin')
+                    <a class="navbar-brand" href="{{ route('admin.pegawai') }}">Data Pegawai</a>
+                    <a class="navbar-brand" href="{{ route('admin.outlet') }}">Data Outlet</a>
+                    @endif
+                @endauth --}}
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,10 +71,24 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    
+                                    @if (auth()->user()->role == 'admin')
+                                    <a class="dropdown-item" href="{{ route('home') }}">Home</a>
+                                    <a class="dropdown-item" href="{{ route('admin.pegawai') }}">{{ __('Data Pegawai') }}</a>
+                                    <a class="dropdown-item" href="{{ route('admin.outlet') }}">{{ __('Data Outlet') }}</a>
+                                    @endif
+
+                                    @if (auth()->user()->role == 'operator')
+                                    <a class="dropdown-item" href="{{ route('home') }}">Home</a>
+                                    <a class="dropdown-item" href="{{ route('operator.outlet') }}">{{ __('Data Outlet') }}</a>
+                                    @endif
+
+                                    <hr>
+                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Log Out') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -76,6 +103,13 @@
         </nav>
 
         <main class="py-4">
+            <div class="row ml-2">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    @include('_components.alert')
+                </div>
+            </div>
             @yield('content')
         </main>
     </div>

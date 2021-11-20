@@ -25,14 +25,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="no_telp">Nomor Telepon</label>
-                                    <input type="tel" id="phone_number" class="form-control required" name="phone_number" pattern="[0-9]{11,14}" placeholder="08..." required>
+                                    <input type="tel" id="phone_number" class="form-control required" name="phone_number" pattern="[0-9]{20}-[0-9]{4}-[0-9]{4}-[0-9]{4}" placeholder="08..." required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="provider">Provider</label>
                                     <select class="select2 form-control country" required data-validation-required-message="Country Wajib diisi" name="provider" id="provider">
-                                        <option value="">Select Provider</option>
+                                        <option value="" disabled selected>Select Provider</option>
                                         @foreach($providers as $v)
                                         <option value="{{$v->id}}">{{$v->nama_provider}}</option>
                                         @endforeach

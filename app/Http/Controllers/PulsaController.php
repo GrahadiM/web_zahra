@@ -23,7 +23,7 @@ class PulsaController extends Controller
             ->orderBy('pl.created_at','desc')->limit(3)->get();
         $data['pulsa_nominal'] = DB::table('table_nominal_pulsa')->orderBy('nominal','asc')->get();
         $data['providers'] = DB::table('table_provider')->get();
-        $data['user'] = Auth::guard('web')->user();
+        $data['user'] = DB::table('users')->find(auth()->user()->id);
 
         return view('pulsa', $data);
     }
@@ -42,9 +42,10 @@ class PulsaController extends Controller
                 'updated_at'            => date('Y-m-d H:i:s'),
             ];
             $beliPulsa = DB::table('table_pulsa')->insert($insertPulsa);
-            $saldo = Auth::guard('web')->user()->saldo;
+            $saldo = Auth::user()->saldo;
             $saldoNow = $saldo - $harga_pulsa;
-            $user = DB::table('users')->update([
+            $user = DB::table('users')->where('id',auth()->user()->id);
+            $user->update([
                 'saldo'                 => $saldoNow,
                 'updated_at'            => date('Y-m-d H:i:s'),
             ]);
@@ -58,7 +59,7 @@ class PulsaController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             $data['code']    = 500;
-            $data['message'] = 'Maaf Ada yang Error!';
+            $data['message'] = 'Maaf ada yang Error!';
             // var_dump($e);
             return response()->json($data);
         }

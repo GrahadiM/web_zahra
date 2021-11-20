@@ -4,82 +4,55 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function admin()
     {
-        //
+        return view('admin.home');
+    }
+    
+    public function pegawai()
+    {
+        return view('admin.datapegawai.index', [
+            'users' => \App\Models\User::orderBy('name', 'asc')
+            ->where('role', ['operator'])
+            ->paginate(5)
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function outlet()
     {
-        //
+        return view('admin.datauser.index', [
+            'users' => \App\Models\User::orderBy('name', 'asc')
+            ->where('role', 'outlet')
+            ->paginate(5)
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function user_edit(\App\Models\User $user)
     {
-        //
+        $user->find($user->id);
+        return view('admin.datauser.update');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function user_update(Request $request, $id)
     {
-        //
+        $user = DB::table('users')->find($id);
+        $saldo = Auth::user()->saldo;
+        $saldoNow = $saldo + $request->saldo;
+        $user->update([
+            'saldo'                 => $saldoNow,
+            'updated_at'            => date('Y-m-d H:i:s'),
+        ]);
+        return back()->with('success', 'Saldo berhasil dirubah!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function user_destroy(\App\Models\User $user)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $user->delete();
+        return back()->with('success', 'User di hapus!');
     }
 }

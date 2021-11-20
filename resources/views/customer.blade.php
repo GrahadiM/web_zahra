@@ -21,19 +21,19 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>No Meteran</label>
-                                        <input type="number" class="form-control required" name="meteran"  required/>
+                                        <input type="number" class="form-control required" name="meteran" min="0"  required/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>ID Pelanggan</label>
-                                        <input type="number" class="form-control required" name="id_pelanggan"  required/>
+                                        <input type="number" class="form-control required" name="id_pelanggan" min="0"  required/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Batas Daya</label>
-                                        <input type="text" class="form-control required" name="daya"  required/>
+                                        <input type="number" class="form-control required" name="daya" min="0"  required/>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,9 @@
                                                         <th>No Meteran</th>
                                                         <th>ID Pelanggan</th>
                                                         <th>Batas Daya</th>
+                                                        {{-- @if (Auth::user()->role == 'admin')
                                                         <th>Action</th>
+                                                        @endif --}}
                                                     </tr>
                                                 </thead>
                                             </table>

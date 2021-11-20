@@ -279,7 +279,10 @@
                                     </span>
 								</span>
 							</a>
-							<a href="/logout" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5"
+							@if (Auth::user()->role == 'admin')
+							<a href="{{ route('home') }}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Dashboard</a>
+							@endif
+							<a href="/logout" class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5"
 							onclick="event.preventDefault();
 							document.getElementById('logout-form').submit();">
 								{{ __('Logout') }}

@@ -26,7 +26,7 @@ class PaketDataController extends Controller
             ->leftJoin('table_provider as pv', 'pv.id', '=', 'dt.id_provider')
             ->select('dt.id', 'dt.id_provider', 'dt.nama_paket', 'dt.fixed_price','pv.nama_provider')
             ->orderBy('dt.id_provider','asc')->get();
-        $data['user'] = Auth::guard('web')->user();
+        $data['user'] = DB::table('users')->find(auth()->user()->id);
 
         return view('paket_data', $data);
     }
@@ -46,7 +46,8 @@ class PaketDataController extends Controller
             $beliPulsa = DB::table('table_paket_data')->insert($insertPulsa);
             $saldo = Auth::guard('web')->user()->saldo;
             $saldoNow = $saldo - $harga_paket;
-            $user = DB::table('users')->update([
+            $user = DB::table('users')->where('id',auth()->user()->id);
+            $user->update([
                 'saldo'                 => $saldoNow,
                 'updated_at'            => date('Y-m-d H:i:s'),
             ]);

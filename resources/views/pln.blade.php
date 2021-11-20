@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="no_telp">Masukkan Informasi!</label>
-                                    <input type="text" id="informasi" class="form-control required" name="informasi" required>
+                                    <input type="text" id="informasi" class="form-control required" name="informasi" value="pembayaran masuk 1 jam setelah checkout!" required>
                                 </div>
                             </div>
                         </div>

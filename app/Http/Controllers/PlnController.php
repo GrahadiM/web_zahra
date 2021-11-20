@@ -26,7 +26,7 @@ class PlnController extends Controller
             ->get();
         $data['paket_pln'] = DB::table('table_nominal_pln')->get();
         $data['customers'] = DB::table('table_pln_customer')->get();
-        $data['user'] = Auth::guard('web')->user();
+        $data['user'] = DB::table('users')->find(auth()->user()->id);
 
         return view('pln', $data);
     }
@@ -47,7 +47,8 @@ class PlnController extends Controller
             $beliPulsa = DB::table('table_pln')->insert($insertPulsa);
             $saldo = Auth::guard('web')->user()->saldo;
             $saldoNow = $saldo - $harga_pulsa;
-            $user = DB::table('users')->update([
+            $user = DB::table('users')->where('id',auth()->user()->id);
+            $user->update([
                 'saldo'                 => $saldoNow,
                 'updated_at'            => date('Y-m-d H:i:s'),
             ]);
@@ -113,10 +114,10 @@ class PlnController extends Controller
             'daya' => 'required|max:30',
         ]);
         $insertCustomer = [
-            "nama"              => $request->name,
-            "no_meteran"           => $request->meteran,
-            "id_pelanggan"                 => $request->id_pelanggan,
-            "batas_daya"                 => $request->daya,
+            "nama"                  => $request->name,
+            "no_meteran"            => $request->meteran,
+            "id_pelanggan"          => $request->id_pelanggan,
+            "batas_daya"            => $request->daya.(' VA'),
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
         ];
