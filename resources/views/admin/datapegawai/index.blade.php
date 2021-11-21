@@ -32,7 +32,7 @@
                                                 <form action="{{ route('admin.user.destroy', $key->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="https://wa.me/{{ $key->phone }}" target="_blank" class="btn btn-sm btn-success mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Menelpon?')">Call</a>
+                                                    <a href="https://wa.me/{{ $key->phone }}" target="_blank" class="btn btn-sm btn-success mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Menelpon?')">Hubungi</a>
                                                     <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"
                                                         class="btn btn-sm btn-danger">Hapus
                                                     </button>

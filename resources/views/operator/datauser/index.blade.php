@@ -27,18 +27,26 @@
                                             <th>{{ $loop->iteration + $users->firstItem() - 1 . '.' }}</th>
                                             <td>{{ $key->name }}</td>
                                             <td>{{ $key->email }}</td>
-                                            <td>{{ $key->phone }}</td>
+                                            <td>
+                                                @if ($key->phone != NULL)
+                                                {{ $key->phone }}
+                                                @else
+                                                    Tidak diketahui!
+                                                @endif
+                                            </td>
                                             <td>{{ __('Rp.').number_format($key->saldo,2,',','.') }}</td>
                                             <td><span class="badge badge-danger">DILINDUNGI</span></td>
                                             <td>
-                                                <form action="{{ route('admin.user.destroy', $key->id) }}" method="post">
+                                                <form action="{{ route('operator.saldo.destroy', $key->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
+                                                    <a href="{{ route('operator.saldo.edit',$key->id) }}" class="btn btn-sm btn-warning mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Melihat Data Ini?')">Lihat</a>
+                                                    @if ($key->phone != NULL)
                                                     <a href="https://wa.me/{{ $key->phone }}" target="_blank" class="btn btn-sm btn-success mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Menelpon?')">Hubungi</a>
-                                                    <a href="{{ url('/admin/data-outlet/'.$key->id) }}" class="btn btn-sm btn-warning mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Melihat Data Ini?')">Lihat</a>
-                                                    <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"
+                                                    @endif
+                                                    {{-- <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"
                                                         class="btn btn-sm btn-danger">Hapus
-                                                    </button>
+                                                    </button> --}}
                                                 </form>
                                             </td>
                                         </tr>

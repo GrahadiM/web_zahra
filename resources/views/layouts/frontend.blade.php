@@ -120,7 +120,7 @@
                                                 </span>
 											</div>
 											<span class="symbol symbol-35">
-												<span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30" style="background-image:url('{{URL::asset('images')}}/user.jpg')"></span>
+												<span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30" style="background-image:url('@if(Auth::user()->avatar != NULL) {{ URL::asset('images/avatar/'.Auth::user()->avatar) }} @else {{ URL::asset('/images/user.jpg') }} @endif')"></span>
 											</span>
 										</div>
 									</div>
@@ -242,11 +242,11 @@
 				<!--begin::Header-->
 				<div class="d-flex align-items-center mt-5">
 					<div class="symbol symbol-100 mr-5">
-						<div class="symbol-label" style="background-image:url('{{URL::asset('images')}}/user.jpg')"></div>
+						<div class="symbol-label" style="background-image:url('@if(Auth::user()->avatar != NULL) {{ URL::asset('images/avatar/'.Auth::user()->avatar) }} @else {{ URL::asset('/images/user.jpg') }} @endif')"></div>
 						<i class="symbol-badge bg-success"></i>
 					</div>
 					<div class="d-flex flex-column">
-						<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
+						<a href="{{ route('profile.edit') }}" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
                             @guest
                             {{ __('XXXXX') }}
                             @else
@@ -255,7 +255,7 @@
                         </a>
 						<div class="text-muted mt-1">User</div>
 						<div class="navi mt-2">
-							<a href="#" class="navi-item">
+							<a href="" class="navi-item">
 								<span class="navi-link p-0 pb-2">
 									<span class="navi-icon mr-1">
 										<span class="svg-icon svg-icon-lg svg-icon-primary">
@@ -280,6 +280,9 @@
 								</span>
 							</a>
 							@if (Auth::user()->role == 'admin')
+							<a href="{{ route('home') }}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Dashboard</a>
+							@endif
+							@if (Auth::user()->role == 'operator')
 							<a href="{{ route('home') }}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Dashboard</a>
 							@endif
 							<a href="/logout" class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5"

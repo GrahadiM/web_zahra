@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
+
+    @stack('css')
+
 </head>
 <body>
     <div id="app">
@@ -68,6 +71,11 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
+                                    @if(Auth::user()->avatar != NULL)
+                                    <img class="image rounded-circle" src="{{ URL::asset('images/avatar/'.Auth::user()->avatar) }}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                                    @else
+                                    <img class="image rounded-circle" src="{{ URL::asset('/images/user.jpg') }}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -80,9 +88,14 @@
 
                                     @if (auth()->user()->role == 'operator')
                                     <a class="dropdown-item" href="{{ route('home') }}">Home</a>
-                                    <a class="dropdown-item" href="{{ route('operator.outlet') }}">{{ __('Data Outlet') }}</a>
+                                    <a class="dropdown-item" href="{{ route('operator.saldo') }}">{{ __('Data Saldo') }}</a>
+                                    <a class="dropdown-item" href="{{ route('operator.riwayat') }}">{{ __('Data Riwayat Isi Saldo') }}</a>
                                     @endif
 
+                                    <hr>
+
+                                    <a href="{{ route('profile.edit') }}" class="dropdown-item">{{ __('Edit Profile') }}</a>
+                                    
                                     <hr>
                                     
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -113,5 +126,8 @@
             @yield('content')
         </main>
     </div>
+    
+    @stack('js')
+
 </body>
 </html>
