@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/admin/home', [App\Http\Controllers\Admin\DashboardController::class, 'admin'])->name('admin.home');
         Route::get('/admin/data-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'pegawai'])->name('admin.pegawai');
+        Route::get('/admin/add-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'addpegawai'])->name('admin.add.pegawai');
         Route::get('/admin/data-outlet', [App\Http\Controllers\Admin\DashboardController::class, 'outlet'])->name('admin.outlet');
         Route::delete('/admin/{user}/destroy', [App\Http\Controllers\Admin\DashboardController::class, 'user_destroy'])->name('admin.user.destroy');
         Route::get('/admin/data-outlet/{user}', [App\Http\Controllers\Admin\DashboardController::class, 'user_edit'])->name('admin.outlet.edit');

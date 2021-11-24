@@ -88,7 +88,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Top Up Saldo '. $user->name) }}</div>
 
-                <div class="card-body">
+                {{-- <div class="card-body">
                     <form method="POST" action="{{ route('admin.outlet.update', $user->id) }}">
                         @method('PUT')
                         @csrf
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <h3 class="text-secondary mb-3 ml-3"><u>Tabel Riwayat Pengisian Saldo</u></h3>
                 <div class="table-responsive">
                     <table class="table table-light table-hover">

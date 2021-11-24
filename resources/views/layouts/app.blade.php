@@ -27,7 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <b>{{ config('app.name', 'Laravel') }}</b>
                 </a>
                 
                 {{-- @auth
@@ -70,11 +70,11 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    <b>{{ Auth::user()->name }}</b>
                                     @if(Auth::user()->avatar != NULL)
-                                    <img class="image rounded-circle" src="{{ URL::asset('images/avatar/'.Auth::user()->avatar) }}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                                    <img class="image rounded-circle" src="{{ URL::asset('images/avatar/'.Auth::user()->avatar) }}" alt="profile_image" style="width: 65px;height: 65px; padding: 10px; margin: 0px; ">
                                     @else
-                                    <img class="image rounded-circle" src="{{ URL::asset('/images/user.jpg') }}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                                    <img class="image rounded-circle" src="{{ URL::asset('/images/user.jpg') }}" alt="profile_image" style="width: 65px;height: 65px; padding: 10px; margin: 0px; ">
                                     @endif
                                 </a>
 
@@ -90,11 +90,15 @@
                                     <a class="dropdown-item" href="{{ route('home') }}">Home</a>
                                     <a class="dropdown-item" href="{{ route('operator.saldo') }}">{{ __('Data Saldo') }}</a>
                                     <a class="dropdown-item" href="{{ route('operator.riwayat') }}">{{ __('Data Riwayat Isi Saldo') }}</a>
+                                    <a class="dropdown-item" href="">{{ __('Data Riwayat Transaksi') }}</a>
                                     @endif
 
                                     <hr>
 
                                     <a href="{{ route('profile.edit') }}" class="dropdown-item">{{ __('Edit Profile') }}</a>
+                                    @if (auth()->user()->role == 'admin')
+                                    <a class="dropdown-item" href="{{ route('admin.add.pegawai') }}">Tambah Pegawai</a>
+                                    @endif
                                     
                                     <hr>
                                     

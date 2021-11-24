@@ -85,7 +85,7 @@
                                         </span> --}}
                                         </span>
                                         <span class="option-body">
-                                            Harga : Rp {{ number_format($each->fixed_price, 0) }}
+                                            Harga : Rp {{ $each->fixed_price }}
                                         </span>
                                     </span>
                                 </label>

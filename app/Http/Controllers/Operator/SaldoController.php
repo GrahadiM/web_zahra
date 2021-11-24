@@ -63,7 +63,7 @@ class SaldoController extends Controller
     public function edit(\App\Models\User $user)
     {
         $user = $user->find($user->id);
-        $rs = \App\Models\RiwayatSaldo::orderBy('created_at', 'asc')->where('user_id', $user->id)->paginate(5);
+        $rs = \App\Models\RiwayatSaldo::orderBy('created_at', 'desc')->where('user_id', $user->id)->paginate(5);
         // $rsaldo = DB::table('riwayat_saldos')->get()->sum('saldoPlus');
         $rsaldo = DB::table('riwayat_saldos')->where('user_id', $user->id)->get()->sum('saldoPlus');
         return view('operator.datauser.update', compact('user', 'rs', 'rsaldo'));

@@ -23,6 +23,11 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function addpegawai()
+    {
+        return view('auth.registerpegawai');
+    }
+
     public function outlet()
     {
         return view('admin.datauser.index', [
