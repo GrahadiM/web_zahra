@@ -79,7 +79,7 @@
 							<!--begin::Container-->
 							<div class="container">
 								<div class="d-none d-lg-flex align-items-center mr-3">
-									<a href="/" class="mr-20">
+									<a href="{{ url('/') }}" class="mr-20">
 										{{-- <img alt="Logo" src="{{URL::asset('images')}}/logo.png" class="max-h-130px" /> --}}
 										<h3 class="text-white">{{ config('app.name', 'PPOB') }}</h3>
 									</a>
@@ -146,7 +146,7 @@
                                                 <div class="symbol">
                                                     <img alt="Pic" src="{{URL::asset('images')}}/pulsa.png"/>
                                                 </div>
-                                                <a href="/pulsa" class="menu-link">
+                                                <a href="{{ url('/pulsa') }}" class="menu-link">
 													<span class="menu-text">Pulsa</span>
 													<!-- <span class="menu-desc">Components &amp; Elements</span> -->
 												</a>
@@ -156,7 +156,7 @@
                                                 <div class="symbol">
                                                     <img alt="Pic" src="{{URL::asset('images')}}/paket-data.jpg"/>
                                                 </div>
-												<a href="/paket-data" class="menu-link">
+												<a href="{{ url('/paket-data') }}" class="menu-link">
 													<span class="menu-text">Paket Data</span>
 													<!-- <span class="menu-desc">Components &amp; Elements</span> -->
 												</a>
@@ -166,7 +166,7 @@
                                                 <div class="symbol">
                                                     <img alt="Pic" src="{{URL::asset('images')}}/pln.png"/>
                                                 </div>
-												<a href="/pln" class="menu-link">
+												<a href="{{ url('/pln') }}" class="menu-link">
 													<span class="menu-text">PLN PRABAYAR</span>
 													<!-- <span class="menu-desc">Components &amp; Elements</span> -->
 												</a>
@@ -279,12 +279,17 @@
                                     </span>
 								</span>
 							</a>
+
 							@if (Auth::user()->role == 'admin')
 							<a href="{{ route('home') }}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Dashboard</a>
 							@endif
 							@if (Auth::user()->role == 'operator')
 							<a href="{{ route('home') }}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Dashboard</a>
 							@endif
+							@if (Auth::user()->role == 'outlet')
+							<a href="{{ route('request-saldo.index') }}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Request Saldo</a>
+							@endif
+							
 							<a href="/logout" class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5"
 							onclick="event.preventDefault();
 							document.getElementById('logout-form').submit();">

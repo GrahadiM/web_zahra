@@ -18,9 +18,6 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/paket-data', [App\Http\Controllers\PaketDataController::class, 'index']);
     Route::post('/paket-data-post', [App\Http\Controllers\PaketDataController::class, 'post'])->name('data');
 
-    // Route::get('/pln', [App\Http\Controllers\PlnController::class, 'index']);
-    // Route::post('/pln-post', [App\Http\Controllers\PlnController::class, 'post'])->name('pln');
-
     Route::get('/pln', [App\Http\Controllers\PlnController::class, 'index']);
     Route::get('/customer', [App\Http\Controllers\PlnController::class, 'customer']);
     Route::get('/data_customer', [App\Http\Controllers\PlnController::class, 'data_customer']);
@@ -33,10 +30,18 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::patch('upload', [App\Http\Controllers\ProfileController::class, 'upload'])->name('profile.upload');
     Route::patch('password', [App\Http\Controllers\ProfileController::class, 'password'])->name('password');
 
+    Route::get('request-saldo', [App\Http\Controllers\RequestSaldoController::class, 'index'])->name('request-saldo.index');
+    Route::get('request-saldo/filter', [App\Http\Controllers\Operator\RequestSaldoController::class, 'filter'])->name('request-saldo.filter');
+    Route::post('post-request-saldo', [App\Http\Controllers\RequestSaldoController::class, 'create'])->name('request-saldo.create');
+
     Route::group(['middleware' => ['admin']], function () {
+
         Route::get('/admin/home', [App\Http\Controllers\Admin\DashboardController::class, 'admin'])->name('admin.home');
+
         Route::get('/admin/data-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'pegawai'])->name('admin.pegawai');
         Route::get('/admin/add-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'addpegawai'])->name('admin.add.pegawai');
+        Route::post('/admin/post-add-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'postpegawai'])->name('admin.post.pegawai');
+
         Route::get('/admin/data-outlet', [App\Http\Controllers\Admin\DashboardController::class, 'outlet'])->name('admin.outlet');
         Route::delete('/admin/{user}/destroy', [App\Http\Controllers\Admin\DashboardController::class, 'user_destroy'])->name('admin.user.destroy');
         Route::get('/admin/data-outlet/{user}', [App\Http\Controllers\Admin\DashboardController::class, 'user_edit'])->name('admin.outlet.edit');
@@ -45,13 +50,22 @@ Route::group(['middleware' => ['auth:web']], function () {
     });
 
     Route::group(['middleware' => ['operator']], function () {
+
         // Route::get('/data-outlet', [App\Http\Controllers\Operator\DashboardController::class, 'outlet'])->name('operator.outlet');
         Route::get('/operator/data-saldo', [App\Http\Controllers\Operator\SaldoController::class, 'index'])->name('operator.saldo');
+        Route::get('/operator/data-saldo/filter', [App\Http\Controllers\Operator\SaldoController::class, 'filter'])->name('operator.saldo.filter');
         Route::delete('/operator/{user}/destroy', [App\Http\Controllers\Operator\SaldoController::class, 'destroy'])->name('operator.saldo.destroy');
         Route::get('/operator/data-saldo/{user}', [App\Http\Controllers\Operator\SaldoController::class, 'edit'])->name('operator.saldo.edit');
         Route::put('/operator/{user}', [App\Http\Controllers\Operator\SaldoController::class, 'update'])->name('operator.saldo.update');
+
         Route::get('/operator/data-riwayat-isi-saldo', [App\Http\Controllers\Operator\RiwayatSaldoController::class, 'index'])->name('operator.riwayat');
+        Route::get('/operator/data-riwayat-isi-saldo/filter', [App\Http\Controllers\Operator\RiwayatSaldoController::class, 'filter'])->name('operator.riwayat.filter');
         Route::get('/operator/data-riwayat-isi-saldo/{user}', [App\Http\Controllers\Operator\RiwayatSaldoController::class, 'edit'])->name('operator.riwayat.edit');
-        // Route::resource('operator/data-riwayat-isi-saldo', App\Http\Controllers\Operator\RiwayatSaldoController::class);
+        
+        Route::get('operator/request-saldo', [App\Http\Controllers\Operator\RequestSaldoController::class, 'index'])->name('operator.request-saldo.index');
+        Route::get('operator/request-saldo/filter', [App\Http\Controllers\Operator\RequestSaldoController::class, 'filter'])->name('operator.request-saldo.filter');
+        Route::get('operator/request-saldo/{id}/edit', [App\Http\Controllers\Operator\RequestSaldoController::class, 'edit'])->name('operator.request-saldo.edit');
+        Route::put('operator/request-saldo/{id}', [App\Http\Controllers\Operator\RequestSaldoController::class, 'update'])->name('operator.request-saldo.update');
+        Route::get('operator/request-saldo/{id}', [App\Http\Controllers\Operator\RequestSaldoController::class, 'show'])->name('operator.request-saldo.show');
     });
 });

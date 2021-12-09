@@ -22,6 +22,50 @@ class SaldoController extends Controller
         ]);
     }
 
+    public function filter(Request $request)
+    {
+        $name = $request->name;
+        $saldo = $request->saldo;
+
+        // dd($request);
+        
+        if ($name == null) {
+            
+            $users = \App\Models\User::orderBy('saldo', 'desc')
+            ->where('role', 'outlet')
+            ->where('saldo','like',"%".$saldo."%")
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
+        } elseif ($saldo == null) {
+            
+            $users = \App\Models\User::orderBy('saldo', 'desc')
+            ->where('role', 'outlet')
+            ->where('name','like',"%".$name."%")
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
+        } elseif ($name != null && $saldo != null) {
+            
+            $users = \App\Models\User::orderBy('saldo', 'desc')
+            ->where('role', 'outlet')
+            ->where('name','like',"%".$name."%")
+            ->where('saldo','like',"%".$saldo."%")
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
+        } else {
+            
+            $users = \App\Models\User::orderBy('saldo', 'desc')
+            ->where('role', 'outlet')
+            ->paginate(5);
+
+        }
+        
+        
+        return view('operator.datauser.index', compact('users'));
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

@@ -5,10 +5,35 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Data User</div>
+                    <div class="card-header">Data Riwayat Outlet</div>
 
                     <div class="card-body">
-                        <div class="table-responsive">
+                        
+                        <form method="GET" action="{{ route('operator.saldo.filter') }}">
+                            @csrf
+
+                            <div class="row ml-auto">
+
+                                <div class="col-lg-3">
+                                    <input id="name" type="text" class="form-control" name="name" min="0" value="{{ old('name') }}" autocomplete="name" placeholder="Nama" autofocus>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <input id="saldo" type="number" class="form-control" name="saldo" min="0" value="{{ old('saldo') }}" autocomplete="saldo" placeholder="Saldo" autofocus>
+                                </div>
+
+                                <button type="submit" class="btn btn-sm btn-primary col-lg-2 mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Mencari Data Ini?')">
+                                    {{ __('Search') }}
+                                </button>
+                                <button type="reset" class="btn btn-sm btn-danger col-lg-2 mb-1 mr-1">
+                                    {{ __('Reset') }}
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                        <div class="table-responsive mt-3">
                             <table class="table table-light table-hover">
                                 <thead>
                                     <tr>

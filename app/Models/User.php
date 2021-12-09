@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\RiwayatSaldo');
     }
+
+    public function request_saldo()
+    {
+        return $this->belongsTo('App\Models\RequestSaldo');
+    }
 }

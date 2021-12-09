@@ -34,7 +34,9 @@
                                                 <form action="{{ route('admin.user.destroy', $key->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
+                                                    @if ($key->phone != null)
                                                     <a href="https://wa.me/{{ $key->phone }}" target="_blank" class="btn btn-sm btn-success mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Menelpon?')">Hubungi</a>
+                                                    @endif
                                                     <a href="{{ url('/admin/data-outlet/'.$key->id) }}" class="btn btn-sm btn-warning mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Melihat Data Ini?')">Lihat</a>
                                                     <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"
                                                         class="btn btn-sm btn-danger">Hapus

@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'role' => 'outlet',
             'status' => 'non-active',
-            'avatar' => 'outlet.png',
+            'avatar' => 'outlet.jpg',
             'saldo' => 0,
             'remember_token' => Str::random(60),
             'password' => Hash::make($data['password']),

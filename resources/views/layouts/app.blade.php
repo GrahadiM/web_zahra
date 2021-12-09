@@ -7,7 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'PPOB') }}</title>
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="{{URL::asset('images')}}/icon1.png" />
 
     <!-- Scripts -->
     <script src="{{ URL::asset('js/app.js') }}" defer></script>
@@ -74,7 +77,7 @@
                                     @if(Auth::user()->avatar != NULL)
                                     <img class="image rounded-circle" src="{{ URL::asset('images/avatar/'.Auth::user()->avatar) }}" alt="profile_image" style="width: 65px;height: 65px; padding: 10px; margin: 0px; ">
                                     @else
-                                    <img class="image rounded-circle" src="{{ URL::asset('/images/user.jpg') }}" alt="profile_image" style="width: 65px;height: 65px; padding: 10px; margin: 0px; ">
+                                    <img class="image rounded-circle" src="{{ URL::asset('/images/outlet.jpg') }}" alt="profile_image" style="width: 65px;height: 65px; padding: 10px; margin: 0px; ">
                                     @endif
                                 </a>
 
@@ -88,9 +91,13 @@
 
                                     @if (auth()->user()->role == 'operator')
                                     <a class="dropdown-item" href="{{ route('home') }}">Home</a>
-                                    <a class="dropdown-item" href="{{ route('operator.saldo') }}">{{ __('Data Saldo') }}</a>
-                                    <a class="dropdown-item" href="{{ route('operator.riwayat') }}">{{ __('Data Riwayat Isi Saldo') }}</a>
-                                    <a class="dropdown-item" href="">{{ __('Data Riwayat Transaksi') }}</a>
+                                    <a class="dropdown-item" href="{{ route('operator.saldo') }}">{{ __('Data Riwayat Outlet') }}</a>
+                                    <a class="dropdown-item" href="{{ route('operator.riwayat') }}">{{ __('Data Riwayat Transaksi') }}</a>
+                                    <a class="dropdown-item" href="{{ route('operator.request-saldo.index') }}">{{ __('Data Pengajuan Saldo') }}</a>
+                                    @endif
+
+                                    @if (auth()->user()->role == 'outlet')
+                                    <a class="dropdown-item" href="{{ route('request-saldo.index') }}">Request Saldo</a>
                                     @endif
 
                                     <hr>

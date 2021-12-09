@@ -24,7 +24,7 @@
                                     @forelse ($users as $key)
                                         <tr>
                                             <th>{{ $loop->iteration + $users->firstItem() - 1 . '.' }}</th>
-                                            <td>{{ $key->name }}</td>
+                                            <td>{{ ucfirst($key->name) }}</td>
                                             <td>{{ $key->email }}</td>
                                             <td>{{ $key->phone }}</td>
                                             <td><span class="badge badge-danger">DILINDUNGI</span></td>
@@ -32,7 +32,9 @@
                                                 <form action="{{ route('admin.user.destroy', $key->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
+                                                    @if ($key->phone != null)
                                                     <a href="https://wa.me/{{ $key->phone }}" target="_blank" class="btn btn-sm btn-success mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Menelpon?')">Hubungi</a>
+                                                    @endif
                                                     <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"
                                                         class="btn btn-sm btn-danger">Hapus
                                                     </button>

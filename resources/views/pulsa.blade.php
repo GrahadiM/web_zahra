@@ -128,7 +128,7 @@
                     if (result.value) {
                         $.ajax({ //line 28
                             type: 'POST',
-                            url: '/pulsa_post',
+                            url: '{{ url("/pulsa_post") }}',
                             dataType: 'json',
                             data: new FormData($("#form_purchase")[0]),
                             processData: false,

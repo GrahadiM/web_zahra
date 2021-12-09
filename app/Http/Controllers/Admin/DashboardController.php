@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
@@ -26,6 +30,30 @@ class DashboardController extends Controller
     public function addpegawai()
     {
         return view('auth.registerpegawai');
+    }
+
+    protected function postpegawai(Request $request)
+    {   
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'numeric'],
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => 'operator',
+            'status' => 'active',
+            'avatar' => 'operator.jpg',
+            'phone' => $request->phone,
+            'saldo' => 0,
+            'remember_token' => Str::random(60),
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('admin.add.pegawai')->with('success', 'Akun berhasil ditambahkan!');
     }
 
     public function outlet()
