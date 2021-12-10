@@ -142,7 +142,7 @@
                     if (result.value) {
                         $.ajax({ //line 28
                             type: 'POST',
-                            url: '/pln-post',
+                            url: '{{ url("/pln-post") }}',
                             dataType: 'json',
                             data: new FormData($("#form_purchase")[0]),
                             processData: false,
