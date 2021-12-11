@@ -87,10 +87,15 @@
                                     <a class="dropdown-item" href="{{ route('home') }}">Home</a>
                                     <a class="dropdown-item" href="{{ route('admin.pegawai') }}">{{ __('Data Pegawai') }}</a>
                                     <a class="dropdown-item" href="{{ route('admin.outlet') }}">{{ __('Data Outlet') }}</a>
+                                    <hr>
+                                    <a class="dropdown-item" href="{{ route('admin.data-pulsa') }}">{{ __('Data Pulsa') }}</a>
+                                    <a class="dropdown-item" href="{{ route('admin.data-paket') }}">{{ __('Data Paket') }}</a>
+                                    <a class="dropdown-item" href="{{ route('admin.data-pln') }}">{{ __('Data PLN') }}</a>
                                     @endif
 
                                     @if (auth()->user()->role == 'operator')
                                     <a class="dropdown-item" href="{{ route('home') }}">Home</a>
+                                    <hr>
                                     <a class="dropdown-item" href="{{ route('operator.saldo') }}">{{ __('Data Riwayat Outlet') }}</a>
                                     <a class="dropdown-item" href="{{ route('operator.riwayat') }}">{{ __('Data Riwayat Transaksi') }}</a>
                                     <a class="dropdown-item" href="{{ route('operator.request-saldo.index') }}">{{ __('Data Pengajuan Saldo') }}</a>
@@ -105,6 +110,8 @@
                                     <a href="{{ route('profile.edit') }}" class="dropdown-item">{{ __('Edit Profile') }}</a>
                                     @if (auth()->user()->role == 'admin')
                                     <a class="dropdown-item" href="{{ route('admin.add.pegawai') }}">Tambah Pegawai</a>
+                                    <hr>
+                                    <a class="dropdown-item" href="{{ route('admin.setting-website') }}">{{ __('Setting Website') }}</a>
                                     @endif
                                     
                                     <hr>

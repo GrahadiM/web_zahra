@@ -37,6 +37,21 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::group(['middleware' => ['admin']], function () {
 
         Route::get('/admin/home', [App\Http\Controllers\Admin\DashboardController::class, 'admin'])->name('admin.home');
+        
+        Route::get('/admin/data-pulsa', [App\Http\Controllers\Admin\PulsaController::class, 'index'])->name('admin.data-pulsa');
+        Route::delete('/admin/data-pulsa/{id}/destroy', [App\Http\Controllers\Admin\PulsaController::class, 'destroy'])->name('admin.data-pulsa.destroy');
+        Route::put('/admin/data-pulsa/harga/{id}', [App\Http\Controllers\Admin\PulsaController::class, 'editprice'])->name('admin.data-pulsa.editprice');
+        Route::put('/admin/data-pulsa/provider/{id}', [App\Http\Controllers\Admin\PulsaController::class, 'editprovider'])->name('admin.data-pulsa.editprovider');
+        
+        Route::get('/admin/data-paket', [App\Http\Controllers\Admin\PaketDataController::class, 'index'])->name('admin.data-paket');
+        Route::delete('/admin/data-paket/{id}/destroy', [App\Http\Controllers\Admin\PaketDataController::class, 'destroy'])->name('admin.data-paket.destroy');
+        
+        Route::get('/admin/data-pln', [App\Http\Controllers\Admin\PlnController::class, 'index'])->name('admin.data-pln');
+        Route::delete('/admin/data-pln/{id}/destroy', [App\Http\Controllers\Admin\PlnController::class, 'destroy'])->name('admin.data-pln.destroy');
+        
+        // Route::resource('/setting-website', App\Http\Controllers\Admin\SettingWebsiteController::class);
+        Route::get('/admin/setting-website', [App\Http\Controllers\SettingWebsiteController::class, 'index'])->name('admin.setting-website');
+        Route::put('/admin/setting-website', [App\Http\Controllers\SettingWebsiteController::class, 'update'])->name('admin.setting-website.update');
 
         Route::get('/admin/data-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'pegawai'])->name('admin.pegawai');
         Route::get('/admin/add-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'addpegawai'])->name('admin.add.pegawai');
