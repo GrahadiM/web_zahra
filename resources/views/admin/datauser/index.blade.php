@@ -13,6 +13,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>ID</th>
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Phone</th>
@@ -25,6 +26,7 @@
                                     @forelse ($users as $key)
                                         <tr>
                                             <th>{{ $loop->iteration + $users->firstItem() - 1 . '.' }}</th>
+                                            <td>{{ $key->id }}</td>
                                             <td>{{ $key->name }}</td>
                                             <td>{{ $key->email }}</td>
                                             <td>{{ $key->phone }}</td>

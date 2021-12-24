@@ -13,11 +13,6 @@ class PulsaController extends Controller
         date_default_timezone_set('Asia/Jakarta');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data['last_transaction'] = DB::table('table_pulsa as pl')
@@ -32,44 +27,11 @@ class PulsaController extends Controller
         return view('admin.datapulsa.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function editprice($id)
     {
         $data['pulsa_nominal'] = DB::table('table_nominal_pulsa')->find($id);
@@ -82,26 +44,39 @@ class PulsaController extends Controller
         return view('admin.datapulsa.provider', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function updateprice(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nominal' => 'required',          
+            'fixed_price' => 'required',      
+        ]);
+        $price = DB::table('table_nominal_pulsa')->find($id);
+        dd($request->all());
+        $price->update($request->all());
+
+        return back()->with('success', "Data has been updated!!");
+    }
+
+    public function updateprovider(Request $request, $id)
+    {
+        $this->validate($request, [
+            '' => 'required|numeric',         
+        ]);
+        DB::table('table_provider')->find($id)->updateprovider($request->all());
+        
+        return back()->with('success', "Data has been updated!!");
+    }
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroyprice($id)
     {
-        //
+        $price = DB::table('table_nominal_pulsa')->find($id);
+        $price->delete();
+
+        return back()->with('success', "Data has been deleted!!");
     }
 }

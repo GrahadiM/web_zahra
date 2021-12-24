@@ -16,7 +16,7 @@ class SaldoController extends Controller
     public function index()
     {
         return view('operator.datauser.index', [
-            'users' => \App\Models\User::orderBy('name', 'asc')
+            'users' => \App\Models\User::orderBy('id', 'asc')
             ->where('role', 'outlet')
             ->paginate(5)
         ]);

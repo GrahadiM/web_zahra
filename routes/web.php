@@ -40,8 +40,10 @@ Route::group(['middleware' => ['auth:web']], function () {
         
         Route::get('/admin/data-pulsa', [App\Http\Controllers\Admin\PulsaController::class, 'index'])->name('admin.data-pulsa');
         Route::delete('/admin/data-pulsa/{id}/destroy', [App\Http\Controllers\Admin\PulsaController::class, 'destroy'])->name('admin.data-pulsa.destroy');
-        Route::put('/admin/data-pulsa/harga/{id}', [App\Http\Controllers\Admin\PulsaController::class, 'editprice'])->name('admin.data-pulsa.editprice');
-        Route::put('/admin/data-pulsa/provider/{id}', [App\Http\Controllers\Admin\PulsaController::class, 'editprovider'])->name('admin.data-pulsa.editprovider');
+        Route::get('/admin/data-pulsa/harga/{id}', [App\Http\Controllers\Admin\PulsaController::class, 'editprice'])->name('admin.data-pulsa.editprice');
+        Route::put('/admin/data-pulsa/harga/{id}', [App\Http\Controllers\Admin\PulsaController::class, 'updateprice'])->name('admin.data-pulsa.updateprice');
+        Route::get('/admin/data-pulsa/provider/{id}', [App\Http\Controllers\Admin\PulsaController::class, 'editprovider'])->name('admin.data-pulsa.editprovider');
+        Route::put('/admin/data-pulsa/provider/{id}', [App\Http\Controllers\Admin\PulsaController::class, 'updateprovider'])->name('admin.data-pulsa.updateprovider');
         
         Route::get('/admin/data-paket', [App\Http\Controllers\Admin\PaketDataController::class, 'index'])->name('admin.data-paket');
         Route::delete('/admin/data-paket/{id}/destroy', [App\Http\Controllers\Admin\PaketDataController::class, 'destroy'])->name('admin.data-paket.destroy');
@@ -51,7 +53,7 @@ Route::group(['middleware' => ['auth:web']], function () {
         
         // Route::resource('/setting-website', App\Http\Controllers\Admin\SettingWebsiteController::class);
         Route::get('/admin/setting-website', [App\Http\Controllers\SettingWebsiteController::class, 'index'])->name('admin.setting-website');
-        Route::put('/admin/setting-website', [App\Http\Controllers\SettingWebsiteController::class, 'update'])->name('admin.setting-website.update');
+        Route::put('/admin/post-setting-website', [App\Http\Controllers\SettingWebsiteController::class, 'update'])->name('admin.setting-website.update');
 
         Route::get('/admin/data-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'pegawai'])->name('admin.pegawai');
         Route::get('/admin/add-pegawai', [App\Http\Controllers\Admin\DashboardController::class, 'addpegawai'])->name('admin.add.pegawai');
@@ -83,4 +85,6 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::put('operator/request-saldo/{id}', [App\Http\Controllers\Operator\RequestSaldoController::class, 'update'])->name('operator.request-saldo.update');
         Route::get('operator/request-saldo/{id}', [App\Http\Controllers\Operator\RequestSaldoController::class, 'show'])->name('operator.request-saldo.show');
     });
+
+    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });

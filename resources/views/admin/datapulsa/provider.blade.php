@@ -9,7 +9,8 @@
 
                     <div class="card-body">
                         <div class="mb-3">
-                            <form method="POST" action="">
+                            <form method="POST" action="{{ route('admin.data-pulsa.updateprovider', $provider->id) }}">
+                                @method('PUT')
                                 @csrf
 
                                 <div class="form-group row">
@@ -30,7 +31,7 @@
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-9 offset-md-3">
-                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah Anda Yakin Ingin Menambahkan Data?')">
+                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah Anda Yakin Ingin Mengubah Data?')">
                                             {{ __('Create') }}
                                         </button>
                                         <button type="reset" class="btn btn-default">

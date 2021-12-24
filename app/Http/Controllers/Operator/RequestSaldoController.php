@@ -14,7 +14,7 @@ class RequestSaldoController extends Controller
      */
     public function index()
     {
-        $users = \App\Models\User::orderBy('name', 'asc')
+        $users = \App\Models\User::orderBy('id', 'asc')
         ->where('role', 'outlet')
         ->get();
 

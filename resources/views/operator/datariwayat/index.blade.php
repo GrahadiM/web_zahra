@@ -42,6 +42,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>ID</th>
                                         <th>Nama</th>
                                         <th>Saldo</th>
                                         <th>Total Transaksi</th>
@@ -53,6 +54,7 @@
                                     @forelse ($users as $key)
                                         <tr>
                                             <th>{{ $loop->iteration + $users->firstItem() - 1 . '.' }}</th>
+                                            <td>{{ $key->id }}</td>
                                             <td>{{ $key->name }}</td>
                                             <td>{{ __('Rp.').number_format($key->saldo,2,',','.') }}</td>
                                             <td>{{ $key->total.__(' x') }}</td>

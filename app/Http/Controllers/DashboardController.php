@@ -12,11 +12,19 @@ class DashboardController extends Controller
         date_default_timezone_set('Asia/Jakarta');
     }
     
-    public function index()
+    public function index(Request $request)
     {
-
-        $data['user'] = Auth::guard('web')->user();
-
-        return view('dashboard', $data);
+        if (Auth::user()->status == 'active') {
+            $data['user'] = Auth::guard('web')->user();
+            return view('dashboard', $data);
+        } else {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+    
+            return redirect('login')
+            ->withErrors('Maaf akun anda belum aktif');
+        }
+        
     }
 }

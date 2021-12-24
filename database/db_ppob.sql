@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2021 at 10:45 AM
+-- Generation Time: Dec 24, 2021 at 08:23 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.14
 
@@ -68,7 +68,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (40, '2020_10_03_133410_create_table_provider', 1),
 (41, '2020_10_04_054139_create_table_pln_customer', 1),
 (42, '2021_11_21_172516_create_riwayat_saldos_table', 1),
-(43, '2021_11_24_182147_create_request_saldos_table', 1);
+(43, '2021_11_24_182147_create_request_saldos_table', 1),
+(44, '2021_12_11_065435_create_setting_websites_table', 2);
 
 -- --------------------------------------------------------
 
@@ -116,13 +117,6 @@ CREATE TABLE `request_saldos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `request_saldos`
---
-
-INSERT INTO `request_saldos` (`id`, `user_id`, `bukti`, `nominal`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, '20211209_134542_Outlet.png', 1000000, 'sukses', '2021-12-09 06:45:42', '2021-12-09 06:45:42');
-
 -- --------------------------------------------------------
 
 --
@@ -144,7 +138,39 @@ CREATE TABLE `riwayat_saldos` (
 --
 
 INSERT INTO `riwayat_saldos` (`id`, `user_id`, `saldoAfter`, `saldoPlus`, `saldoNow`, `created_at`, `updated_at`) VALUES
-(1, 3, '0', '1000000', '1000000', '2021-12-09 06:44:10', '2021-12-09 06:44:10');
+(4, 3, '0', '1000000', '1000000', '2021-12-24 18:51:39', '2021-12-24 18:51:39'),
+(5, 4, '0', '1000000', '1000000', '2021-12-24 18:52:16', '2021-12-24 18:52:16'),
+(6, 5, '0', '1000000', '1000000', '2021-12-24 18:52:20', '2021-12-24 18:52:20'),
+(7, 6, '0', '1000000', '1000000', '2021-12-24 18:52:25', '2021-12-24 18:52:25'),
+(8, 7, '0', '1000000', '1000000', '2021-12-24 18:52:32', '2021-12-24 18:52:32'),
+(9, 8, '0', '1000000', '1000000', '2021-12-24 18:52:35', '2021-12-24 18:52:35'),
+(10, 9, '0', '1000000', '1000000', '2021-12-24 18:52:38', '2021-12-24 18:52:38'),
+(11, 10, '0', '1000000', '1000000', '2021-12-24 18:52:41', '2021-12-24 18:52:41'),
+(12, 11, '0', '1000000', '1000000', '2021-12-24 18:52:44', '2021-12-24 18:52:44'),
+(13, 12, '0', '1000000', '1000000', '2021-12-24 18:52:47', '2021-12-24 18:52:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setting_websites`
+--
+
+CREATE TABLE `setting_websites` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `favicon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `app_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `footer_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setting_websites`
+--
+
+INSERT INTO `setting_websites` (`id`, `favicon`, `logo`, `app_name`, `footer_name`, `created_at`, `updated_at`) VALUES
+(1, '', '', 'PT Hana Patria Sejati', 'PT Hana Patria Sejati', '2021-12-24 18:42:47', '2021-12-24 18:42:47');
 
 -- --------------------------------------------------------
 
@@ -158,6 +184,15 @@ CREATE TABLE `table_kategori` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `table_kategori`
+--
+
+INSERT INTO `table_kategori` (`id`, `nama_kategori`, `created_at`, `updated_at`) VALUES
+(1, 'Pulsa', NULL, NULL),
+(2, 'Paket Data', NULL, NULL),
+(3, 'PLN', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -207,12 +242,12 @@ CREATE TABLE `table_nominal_pln` (
 --
 
 INSERT INTO `table_nominal_pln` (`id`, `paket_pln`, `fixed_price`, `daya`, `created_at`, `updated_at`) VALUES
-(1, '20Rb', 25000, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
-(2, '50Rb', 55000, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
-(3, '100Rb', 105000, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
-(4, '200Rb', 205000, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
-(5, '500Rb', 505000, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
-(6, '1Jt', 1005000, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41');
+(1, '20Rb', 20200, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
+(2, '50Rb', 50200, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
+(3, '100Rb', 100200, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
+(4, '200Rb', 200200, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
+(5, '500Rb', 500200, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41'),
+(6, '1Jt', 1000200, 0, '2020-10-03 22:29:41', '2020-10-03 22:29:41');
 
 -- --------------------------------------------------------
 
@@ -233,11 +268,11 @@ CREATE TABLE `table_nominal_pulsa` (
 --
 
 INSERT INTO `table_nominal_pulsa` (`id`, `nominal`, `fixed_price`, `created_at`, `updated_at`) VALUES
-(1, 5000, 6500, '2020-10-03 09:24:19', '2020-10-03 09:24:19'),
-(2, 10000, 11500, '2020-10-03 09:24:19', '2020-10-03 09:24:19'),
-(3, 20000, 21500, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 15000, 16500, '2020-10-03 07:51:55', '2020-10-03 07:51:55'),
-(5, 25000, 26000, '2020-10-03 09:52:41', '2020-10-03 09:52:41');
+(1, 5000, 5200, '2020-10-03 09:24:19', '2020-10-03 09:24:19'),
+(2, 10000, 10200, '2020-10-03 09:24:19', '2020-10-03 09:24:19'),
+(3, 20000, 20200, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 15000, 15200, '2020-10-03 07:51:55', '2020-10-03 07:51:55'),
+(5, 25000, 252000, '2020-10-03 09:52:41', '2020-10-03 09:52:41');
 
 -- --------------------------------------------------------
 
@@ -260,15 +295,9 @@ CREATE TABLE `table_paket_data` (
 --
 
 INSERT INTO `table_paket_data` (`id`, `nomor_hp`, `id_paket_data`, `id_provider`, `price`, `created_at`, `updated_at`) VALUES
-(1, '085111222333', '1', '2', '100000', '2020-10-03 21:17:44', '2020-10-03 21:17:44'),
-(2, '083555444777', '3', '3', '10000', '2020-10-03 21:51:50', '2020-10-03 21:51:50'),
-(3, '087555444111', '3', '3', '10000', '2020-10-03 21:53:59', '2020-10-03 21:53:59'),
-(4, '085654785215', '3', '3', '10000', '2020-10-03 21:54:25', '2020-10-03 21:54:25'),
-(5, '085654785215', '1', '3', '10000', '2020-10-03 21:56:44', '2020-10-03 21:56:44'),
-(6, '085888999777', '7', '3', '10000', '2020-10-03 21:58:15', '2020-10-03 21:58:15'),
-(7, '085654785215', '1', '3', '10000', '2020-10-03 22:01:16', '2020-10-03 22:01:16'),
-(8, '08565478544', '9', '3', '50000', '2020-10-03 22:06:29', '2020-10-03 22:06:29'),
-(9, '085111222333', '9', '3', '50000', '2020-10-04 01:20:36', '2020-10-04 01:20:36');
+(1, '123456789', '3', '3', '10000', '2021-12-24 19:17:23', '2021-12-24 19:17:23'),
+(2, '123456789', '2', '3', '10000', '2021-12-24 19:17:23', '2021-12-24 19:17:23'),
+(3, '123456789', '1', '3', '10000', '2021-12-24 19:17:23', '2021-12-24 19:17:23');
 
 -- --------------------------------------------------------
 
@@ -291,10 +320,10 @@ CREATE TABLE `table_pln` (
 --
 
 INSERT INTO `table_pln` (`id`, `id_customer`, `id_paket_pln`, `price`, `informasi`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 20000, 'pembayaran masuk 1 jam setelah checkout!', '2020-10-03 23:24:00', '2020-10-03 23:24:00'),
-(2, 2, 2, 50000, 'pembayaran masuk 1 jam setelah checkout!', '2020-10-03 23:30:42', '2020-10-03 23:30:42'),
-(3, 1, 4, 200000, 'pembayaran masuk 1 jam setelah checkout!', '2020-10-03 23:39:25', '2020-10-03 23:39:25'),
-(4, 6, 2, 50000, 'pembayaran masuk 1 jam setelah checkout!', '2020-10-04 01:21:53', '2020-10-04 01:21:53');
+(1, 2, 4, 200200, 'pembayaran masuk 1 jam setelah checkout!', '2021-12-24 19:17:44', '2021-12-24 19:17:44'),
+(2, 1, 4, 200200, 'pembayaran masuk 1 jam setelah checkout!', '2021-12-24 19:17:44', '2021-12-24 19:17:44'),
+(3, 3, 4, 200200, 'pembayaran masuk 1 jam setelah checkout!', '2021-12-24 19:17:44', '2021-12-24 19:17:44'),
+(4, 4, 4, 200200, 'pembayaran masuk 1 jam setelah checkout!', '2021-12-24 19:17:44', '2021-12-24 19:17:44');
 
 -- --------------------------------------------------------
 
@@ -317,12 +346,9 @@ CREATE TABLE `table_pln_customer` (
 --
 
 INSERT INTO `table_pln_customer` (`id`, `nama`, `id_pelanggan`, `no_meteran`, `batas_daya`, `created_at`, `updated_at`) VALUES
-(1, 'Andhika', '434234324234', '111212454', '400 VA', '2020-10-03 22:50:14', '2020-10-03 22:50:14'),
-(2, 'Arda', '465467867', '555222111', '1200 VA', '2020-10-03 23:21:22', '2020-10-03 23:21:22'),
-(3, 'Yanto', '46464546456', '888777999', '450 VA', '2020-10-03 23:21:22', '2020-10-03 23:21:22'),
-(4, 'Yudha', '11133366699', '46464648', '1200 VA', '2020-10-04 01:09:50', '2020-10-04 01:09:50'),
-(5, 'Budi santoso', '123454656', '444777888', '450 VA', '2020-10-04 01:10:23', '2020-10-04 01:10:23'),
-(6, 'Lathifa', '423443444555', '43432434', '1200 VA', '2020-10-04 01:14:19', '2020-10-04 01:14:19');
+(1, 'Andhika', '434234324234', '111212454', '400 VA', '2020-10-03 22:50:14', NULL),
+(2, 'Arda', '465467867', '555222111', '1200 VA', '2020-10-03 23:21:22', NULL),
+(3, 'Yanto', '46464546456', '888777999', '450 VA', '2020-10-03 23:21:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -368,15 +394,10 @@ CREATE TABLE `table_pulsa` (
 --
 
 INSERT INTO `table_pulsa` (`id`, `nomor_hp`, `id_nominal`, `id_provider`, `price`, `created_at`, `updated_at`) VALUES
-(1, '0645645645654', 2, 1, 11500, '2020-10-03 10:04:57', '2020-10-03 10:04:57'),
-(10, '085654785215', 2, 2, 11500, '2020-10-03 10:35:45', '2020-10-03 10:35:45'),
-(11, '085654785215', 1, 2, 6500, '2020-10-03 10:38:50', '2020-10-03 10:38:50'),
-(12, '085654785215', 2, 1, 11500, '2020-10-03 19:44:13', '2020-10-03 19:44:13'),
-(13, '085888999777', 5, 2, 26000, '2020-10-03 20:52:29', '2020-10-03 20:52:29'),
-(14, '08565478544', 5, 2, 26000, '2020-10-03 22:06:58', '2020-10-03 22:06:58'),
-(15, '083555444777', 5, 3, 26000, '2020-10-03 22:07:24', '2020-10-03 22:07:24'),
-(16, '085654785215', 2, 2, 11500, '2020-10-03 22:07:50', '2020-10-03 22:07:50'),
-(17, '085654785215', 5, 2, 26000, '2020-10-04 01:16:05', '2020-10-04 01:16:05');
+(1, '123456789', 5, 1, 252000, '2021-12-24 19:16:53', '2021-12-24 19:16:53'),
+(2, '123456789', 4, 2, 15200, '2021-12-24 19:17:09', '2021-12-24 19:17:09'),
+(3, '123456789', 5, 1, 252000, '2021-12-24 19:16:53', '2021-12-24 19:16:53'),
+(4, '123456789', 4, 2, 15200, '2021-12-24 19:17:09', '2021-12-24 19:17:09');
 
 -- --------------------------------------------------------
 
@@ -407,9 +428,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `role`, `gender`, `phone`, `address`, `avatar`, `status`, `saldo`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', '-', '-', NULL, 'admin.jpg', 'active', 0, 'admin@test.com', '2021-07-09 13:19:13', '$2y$10$kbBS8Ayc8zmmIKx6YpIEFOoCaXX7r0dF2u1scA24s25ukxcnvWh0K', 'S1EmHTymYjkBMMgztcy8VrDVRm0qwaKBFF7snUKlFiceoGrrdaDiFx0bVhi4', '2021-12-09 06:12:55', '2021-12-09 06:12:55'),
-(2, 'Operator', 'operator', 'Pria', '085767113554', NULL, 'operator.jpg', 'active', 0, 'operator@test.com', '2021-07-09 13:19:13', '$2y$10$3NFMIwO79ez2nZF3LtCfZupUTbZO6n7olUV0c1Uyhro.GgB0TrTa2', 'QhjVwI7NnJqQfof7uysZwkzyuTd0EN4hmia9MIlbBEegLiyA5eF8jHT7WkBy', '2021-12-09 06:12:55', '2021-12-09 06:12:55'),
-(3, 'Outlet', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet@test.com', '2021-07-09 13:19:13', '$2y$10$4Kc5icchVITQ3WNze7dNvuaTw8yshvGYrK2bwNt.BPHtheDSnBZ3G', 'CFkquveBi7bFNDFyqHyQqRou5fIWwS1Eljjxda72G3Bl8Yo61XDctohQZV7G', '2021-12-09 06:12:55', '2021-12-09 06:44:11');
+(1, 'Admin', 'admin', '-', '-', NULL, 'admin.jpg', 'active', 0, 'admin@test.com', '2021-07-09 13:19:13', '$2y$10$AnAye3y4J7Zi/GePCiPam.hf7hZ6YldhXFJ30gpn7pbAE3Ki3HpIi', '9bgXyBWPQw14u9qz7kj1bH1rJCcq9y0RDg3vepdov55RmmCpVXYzBGc8h3kg', '2021-12-24 18:42:49', '2021-12-24 18:42:49'),
+(2, 'Operator', 'operator', 'Pria', '085767113554', NULL, 'operator.jpg', 'active', 0, 'operator@test.com', '2021-07-09 13:19:13', '$2y$10$buRcpFN2SDzQx37a6uAN7.rT4ELZ6fVl5Y7ta2lnfc2NYPJNh6.za', 'Gz5nd2Bua0WmboQmjI0ESeiGbEtdZse5XucaMT7YnsbsNrbEd1tWTEg1ecza', '2021-12-24 18:42:49', '2021-12-24 18:42:49'),
+(3, 'Outlet', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 522600, 'outlet@test.com', '2021-07-09 13:19:13', '$2y$10$.rxL0X3I4hWl3qflR/TmeujO2OvQlmiTpDfpoNbtBDR.dqGHJs7.q', 'FbhOxL49eGSNIMgE0M2UtDZqhRr0oaK4Vcy5kMP1c3OFZ5rIk2IuVGi8jFSB', '2021-12-24 18:42:49', '2021-12-24 19:17:44'),
+(4, 'Outlet2', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet2@test.com', '2021-07-09 13:19:13', '$2y$10$rw8DUaRRL3/aJ1djjpiVhOxeKkSMx6C.qrqX2tKWpkkEunYEMSiVG', 'Ru2OlaPD3OHS4P116KEyIgRBrNjdRPqAWwURdDWVxHxSotaquSSQTqWjhwBF', '2021-12-24 18:42:49', '2021-12-24 18:52:16'),
+(5, 'Outlet3', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet3@test.com', '2021-07-09 13:19:13', '$2y$10$tFMco/.QSsGTEf8euGEX7erGGUBA.rEg1KYTwkbQrS1Vywspz.Er.', 'Uuu9kiCjILR0sH66qjiiFhy29PGhSb5Imq1OdyanFH4gL2RJ0hSC4g5QTULJ', '2021-12-24 18:42:49', '2021-12-24 18:52:20'),
+(6, 'Outlet4', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet4@test.com', '2021-07-09 13:19:13', '$2y$10$K3bnhrKUCbV3jjJgbgT7Ie/ei8iuTy8K/1LKfvpBjUo15lmrfTfjy', '5QcN7tj16EqgBOmwH9Wkf4OhR4bVAZ7Nn2RwJIFRUqKJfEqXjpJ3kHpvY8w1', '2021-12-24 18:42:49', '2021-12-24 18:52:26'),
+(7, 'Outlet5', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet5@test.com', '2021-07-09 13:19:13', '$2y$10$zy7VaCvHZGkyT/T4VOA91usfB9H03qb7QM0MntcWuKOtHMmKHNeX6', 'UiXeKLjAYtDq1T5eYf9XP40sQhMEAakXk1pwGJ5OZ1KkZBD8AQkoKHWJB9jN', '2021-12-24 18:42:49', '2021-12-24 18:52:32'),
+(8, 'Outlet6', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet6@test.com', '2021-07-09 13:19:13', '$2y$10$ilmwBZsyX9m66tT4ws5Y2OJ/364g6WhgSepuB/VkYY4iHVs9AN83O', '0c2cqgnYsSoEvRaFpLWhUNR2wxETQHe9u6OrdLF6VI45xjlKXGpz6u1nLkGV', '2021-12-24 18:42:49', '2021-12-24 18:52:35'),
+(9, 'Outlet7', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet7@test.com', '2021-07-09 13:19:13', '$2y$10$II/2.pmbzMP5.bPDHgZdB.ngqi5PgTwME8cOB4r8OR3GVBwM5R20m', 'XRjZHKOg59PmpwCu8CMacLabC1x9cf7XlgPxjiQn9FpZBEVSHQfPsfESS69E', '2021-12-24 18:42:49', '2021-12-24 18:52:39'),
+(10, 'Outlet8', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet8@test.com', '2021-07-09 13:19:13', '$2y$10$mKjlPuAHyaqCCT2zjdYCKem1G7tH1lewpjCQ85qmKnrumP7iEimCq', 'K6wd4QG3I9ad5z1NziHVpLa95TWnA52wJfnFnkS7epxDCcIu8PvmI7CtR9OG', '2021-12-24 18:42:49', '2021-12-24 18:52:41'),
+(11, 'Outlet9', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet9@test.com', '2021-07-09 13:19:13', '$2y$10$9wygq7kAXl71iT2htTKyX.wk.cca8E5fMQdjGPI80NJP3E5glqsFG', 'Epq8yLi6X3URnBGh9Xuv4Skywt1VntH8DZkJ2OwkrQc0mvPMZXzSWNTsS9z2', '2021-12-24 18:42:49', '2021-12-24 18:52:44'),
+(12, 'Outlet10', 'outlet', 'Pria', '085767113554', NULL, 'outlet.jpg', 'non-active', 1000000, 'outlet10@test.com', '2021-07-09 13:19:13', '$2y$10$RYJDGIZtW/CYpB4TMxiVW.ubH/vfefLu5drYHvjzV68NSjNcBiQ8O', 'DElN6zhY7lqd7ypBdZ9HkBM0tZCjkRFDSjQyI8z5eLFQ4Z4T7d8NT4JfiCCw', '2021-12-24 18:42:49', '2021-12-24 18:52:47');
 
 --
 -- Indexes for dumped tables
@@ -452,6 +482,12 @@ ALTER TABLE `request_saldos`
 -- Indexes for table `riwayat_saldos`
 --
 ALTER TABLE `riwayat_saldos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setting_websites`
+--
+ALTER TABLE `setting_websites`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -529,7 +565,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -541,19 +577,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `request_saldos`
 --
 ALTER TABLE `request_saldos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `riwayat_saldos`
 --
 ALTER TABLE `riwayat_saldos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `setting_websites`
+--
+ALTER TABLE `setting_websites`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `table_kategori`
 --
 ALTER TABLE `table_kategori`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `table_nominal_data`
@@ -577,13 +619,13 @@ ALTER TABLE `table_nominal_pulsa`
 -- AUTO_INCREMENT for table `table_paket_data`
 --
 ALTER TABLE `table_paket_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `table_pln`
 --
 ALTER TABLE `table_pln`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `table_pln_customer`
@@ -601,13 +643,13 @@ ALTER TABLE `table_provider`
 -- AUTO_INCREMENT for table `table_pulsa`
 --
 ALTER TABLE `table_pulsa`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

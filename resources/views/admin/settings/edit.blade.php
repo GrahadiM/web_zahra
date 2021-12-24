@@ -17,7 +17,7 @@
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.setting-website.update') }}">
-                            @method('patch')
+                            @method('PUT')
                             @csrf
 
                             <div class="form-group row">

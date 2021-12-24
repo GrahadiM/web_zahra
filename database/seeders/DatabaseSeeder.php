@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SettingWebsiteSeeder::class,
             UsersSeeder::class,
+            // OutletSeeder::class,
         ]);
     }
 }

@@ -61,7 +61,7 @@
                                                 <form action="{{ route('admin.data-pulsa.destroy', $key->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="{{ url('/admin/data-pulsa/harga/'.$key->id) }}" class="btn btn-sm btn-warning mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Mengubah Data Ini?')">Ubah</a>
+                                                    <a href="{{ route('admin.data-pulsa.editprice', $key->id) }}" class="btn btn-sm btn-warning mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Mengubah Data Ini?')">Ubah</a>
                                                     <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"
                                                         class="btn btn-sm btn-danger">Hapus
                                                     </button>

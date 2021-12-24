@@ -59,7 +59,7 @@ class DashboardController extends Controller
     public function outlet()
     {
         return view('admin.datauser.index', [
-            'users' => \App\Models\User::orderBy('name', 'asc')
+            'users' => \App\Models\User::orderBy('id', 'asc')
             ->where('role', 'outlet')
             ->paginate(5)
         ]);
