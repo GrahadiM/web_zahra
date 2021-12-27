@@ -44,6 +44,7 @@
                                         <th>Phone</th>
                                         <th>Saldo</th>
                                         <th>Password</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -64,6 +65,9 @@
                                             <td>{{ __('Rp.').number_format($key->saldo,2,',','.') }}</td>
                                             <td><span class="badge badge-danger">DILINDUNGI</span></td>
                                             <td>
+                                                <a href="#" data-toggle="modal" data-target="#editStatus<?= $key->id; ?>" title='editStatus' class="btn btn-sm @if($key->status == 'active') btn-success @else btn-danger @endif">{{ $key->status }}</a>
+                                            </td>
+                                            <td>
                                                 <form action="{{ route('operator.saldo.destroy', $key->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
@@ -77,6 +81,42 @@
                                                 </form>
                                             </td>
                                         </tr>
+              
+                                        <div class="modal fade" id="editStatus<?= $key->id; ?>" tabindex="-1" aria-labelledby="editStatus" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editJamKerjaModalLabel">Edit Status</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('operator.updateStatus', $key->id) }}" method="post">
+                                                            @method('PUT')
+                                                            @csrf
+
+                                                            <div class="form-group">
+                                                                <h5>Status</h5>
+                                                                <select name="status" id="status" class="form-control" required="required">
+                                                                    <option selected="true" value="{{ $key->status }}">{{ $key->status }}</option>
+                                                                    @if ($key->status == 'active')
+                                                                    <option value="non-active">non-active</option>
+                                                                    @else
+                                                                    <option value="active">active</option>
+                                                                    @endif
+                                                                </select>
+                                                                {{-- <input type="text" class="form-control" value="{{ $key->status;  }}" id="status" name="status" required="required"> --}}
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @empty
                                         <tr>
                                             <th colspan="6" class="text-danger text-center">Data Kosong!</th>

@@ -148,6 +148,16 @@ class SaldoController extends Controller
         return back()->with('success', 'Saldo berhasil ditambahkan!');
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $user = \App\Models\User::find($id);
+        $user->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('operator.saldo')->with('success', 'Saldo berhasil ditambahkan!');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

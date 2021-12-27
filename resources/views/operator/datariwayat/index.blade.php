@@ -9,7 +9,34 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Data Riwayat Transaksi</div>
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5>Data Riwayat Transaksi</h5>
+                            </div>
+                            @if ($name == null && $saldo == null)
+                                <div class="col-sm-6">
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{ $link }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success col-lg-2 mb-1 mr-1">
+                                            {{ __('Print') }}
+                                        </a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-sm-6">
+                                    <form action="{{ $link }}" method="get" target="_blank">
+                                        <input type="hidden" value="{{ $name }}" name="name">
+                                        <input type="hidden" value="{{ $saldo }}" name="saldo">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-sm btn-success col-lg-2 mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Print Data Ini?')">
+                                                {{ __('Print') }}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
 
                     <div class="card-body">
 
@@ -18,12 +45,12 @@
 
                             <div class="row ml-auto">
 
-                                <div class="col-lg-3">
-                                    <input id="name" type="text" class="form-control" name="name" min="0" value="{{ old('name') }}" autocomplete="name" placeholder="Nama" autofocus>
+                                <div class="col-lg-2">
+                                    <input id="name" type="text" class="form-control" name="name" min="0" value="{{ $name }}" autocomplete="name" placeholder="Nama" autofocus>
                                 </div>
 
-                                <div class="col-lg-3">
-                                    <input id="saldo" type="number" class="form-control" name="saldo" min="0" value="{{ old('saldo') }}" autocomplete="saldo" placeholder="Saldo" autofocus>
+                                <div class="col-lg-2">
+                                    <input id="saldo" type="number" class="form-control" name="saldo" min="0" value="{{ $saldo }}" autocomplete="saldo" placeholder="Saldo" autofocus>
                                 </div>
 
                                 <button type="submit" class="btn btn-sm btn-primary col-lg-2 mb-1 mr-1" onclick="return confirm('Apakah Anda Yakin Ingin Mencari Data Ini?')">

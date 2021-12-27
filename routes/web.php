@@ -74,10 +74,13 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::delete('/operator/{user}/destroy', [App\Http\Controllers\Operator\SaldoController::class, 'destroy'])->name('operator.saldo.destroy');
         Route::get('/operator/data-saldo/{user}', [App\Http\Controllers\Operator\SaldoController::class, 'edit'])->name('operator.saldo.edit');
         Route::put('/operator/{user}', [App\Http\Controllers\Operator\SaldoController::class, 'update'])->name('operator.saldo.update');
+        Route::put('/operator/status/{id}', [App\Http\Controllers\Operator\SaldoController::class, 'updateStatus'])->name('operator.updateStatus');
 
         Route::get('/operator/data-riwayat-isi-saldo', [App\Http\Controllers\Operator\RiwayatSaldoController::class, 'index'])->name('operator.riwayat');
         Route::get('/operator/data-riwayat-isi-saldo/filter', [App\Http\Controllers\Operator\RiwayatSaldoController::class, 'filter'])->name('operator.riwayat.filter');
         Route::get('/operator/data-riwayat-isi-saldo/{user}', [App\Http\Controllers\Operator\RiwayatSaldoController::class, 'edit'])->name('operator.riwayat.edit');
+        Route::get('/operator/print', [App\Http\Controllers\Operator\RiwayatSaldoController::class, 'print'])->name('operator.print');
+        Route::get('/operator/print/filter', [App\Http\Controllers\Operator\RiwayatSaldoController::class, 'printFilter'])->name('operator.print.filter');
         
         Route::get('operator/request-saldo', [App\Http\Controllers\Operator\RequestSaldoController::class, 'index'])->name('operator.request-saldo.index');
         Route::get('operator/request-saldo/filter', [App\Http\Controllers\Operator\RequestSaldoController::class, 'filter'])->name('operator.request-saldo.filter');
@@ -86,5 +89,5 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::get('operator/request-saldo/{id}', [App\Http\Controllers\Operator\RequestSaldoController::class, 'show'])->name('operator.request-saldo.show');
     });
 
-    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
