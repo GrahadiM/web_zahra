@@ -10,7 +10,7 @@ class RiwayatSaldoController extends Controller
 {
     public function index(Request $request)
     {
-        $link = "/operator/print";
+        $link = url('/operator/print');
         $name = $request->name;
         $saldo = $request->saldo;
         $users = \App\Models\User::where('role', 'outlet')
@@ -33,7 +33,7 @@ class RiwayatSaldoController extends Controller
 
     public function filter(Request $request)
     {
-        $link = "/operator/print/filter";
+        $link = url('/operator/print/filter');
         $name = $request->name;
         $saldo = $request->saldo;
 
